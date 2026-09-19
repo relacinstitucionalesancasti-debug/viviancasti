@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viví Ancasti - Portal Oficial de Turismo</title>
+    
+    <!-- Meta descripción y etiqueta canónica -->
+    <meta name="description" content="Descubrí Ancasti, Catamarca. Naturaleza, sierras, circuitos históricos, tradiciones y el portal de acceso a todo el turismo municipal.">
+    <link rel="canonical" href="https://viviancasti.com.ar/">
+
+    <style>
+        :root {
+            --primary-color: #1b3b2b; /* Verde institucional profundo */
+            --accent-color: #c29b61;  /* Tono tierra / oro rústico */
+            --bg-dark: #0f0f0f;       /* Fondo oscuro elegante */
+            --card-bg: #171717;       /* Fondo de tarjetas */
+            --text-light: #fcfbf9;    /* Texto claro institucional */
+            --border-color: #333333;  /* Bordes sobrios */
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Barra de navegación superior estilo portal oficial */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            box-sizing: border-box;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-brand {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Principal Inmersivo */
+        .hero {
+            position: relative;
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .carousel-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4);
+        }
+
+        .carousel-slide.active {
+            display: block;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 20px;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin: 0 0 20px 0;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            color: #ddd;
+        }
+
+        /* Secciones por Temáticas / Experiencias (Estilo Visit Catamarca) */
+        .container {
+            max-width: 1200px;
+            margin: 70px auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            color: var(--accent-color);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Cuadrícula de Contenidos Temáticos */
+        .grid-tematicas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .tematica-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 35px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tematica-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .tematica-card h3 {
+            color: var(--text-light);
+            margin-top: 0;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 12px;
+        }
+
+        .tematica-card p {
+            color: #aaa;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .card-action {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+
+        .card-action:hover {
+            color: #fff;
+        }
+
+        /* Banner Destacado Especial (Puerta a La Tunita) */
+        .destacado-banner {
+            background: linear-gradient(135deg, #1b3b2b 0%, #0a1711 100%);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 50px;
+            margin-top: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            box-sizing: border-box;
+        }
+
+        .destacado-banner-text h2 {
+            color: var(--text-light);
+            font-size: 2rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .destacado-banner-text p {
+            color: #ccc;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin: 0;
+            max-width: 700px;
+        }
+
+        .btn-destacado {
+            background-color: var(--accent-color);
+            color: #000;
+            padding: 14px 28px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            transition: background-color 0.2s;
+        }
+
+        .btn-destacado:hover {
+            background-color: #d4ac6e;
+        }
+
+        /* Pie de página institucional */
+        footer {
+            background-color: #0a0a0a;
+            color: #888;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 100px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer span {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            nav {
+                justify-content: center;
+            }
+            .destacado-banner {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de Navegación Oficial -->
+    <nav>
+        <a href="#" class="nav-brand">Viví Ancasti</a>
+        <div class="nav-links">
+            <a href="#experiencias">Explorá por Temáticas</a>
+            <a href="https://tunita.com.ar" target="_blank">Parque La Tunita</a>
+        </div>
+    </nav>
+
+    <!-- Hero Principal -->
+    <header class="hero">
+        <div class="hero-bg">
+            <div class="carousel-slide active">
+                <img src="/imgindex/index1.jpg" alt="Paisajes de Ancasti">
+            </div>
+            <div class="carousel-slide">
+                <img src="/imgindex/index2.jpg" alt="Paisajes de Ancasti">
+            </div>
+            <div class="carousel-slide">
+                <img src="/imgindex/index3.jpg" alt="Paisajes de Ancasti">
+            </div>
+        </div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Portal Oficial de Turismo</p>
+            <h1>NATURALEZA E HISTORIA MILENARIA</h1>
+            <p>Recorré los caminos de las sierras, descubrí los secretos de nuestros paisajes y planificá tu viaje a través de la plataforma oficial del municipio.</p>
+        </div>
+    </header>
+
+    <!-- Contenido Principal: Explorar por Temáticas (Modelo Visit Catamarca) -->
+    <main class="container" id="experiencias">
+        <div class="section-header">
+            <p class="section-subtitle">¿Qué querés descubrir?</p>
+            <h2 class="section-title">Explorá por Experiencias</h2>
+        </div>
+
+        <div class="grid-tematicas">
+            <!-- Temática 1 -->
+            <div class="tematica-card">
+                <div>
+                    <h3>Naturaleza y Cuesta</h3>
+                    <p>Miradores panorámicos, trekking por senderos de altura y postales únicas inmersas en la vegetación autóctona de las sierras.</p>
+                </div>
+                <span class="card-action" style="color: #666; cursor: default;">Próximamente</span>
+            </div>
+
+            <!-- Temática 2 -->
+            <div class="tematica-card">
+                <div>
+                    <h3>Patrimonio y Arqueología</h3>
+                    <p>Testimonios de culturas ancestrales resguardados en aleros y rincones históricos que forman parte de la identidad de la región.</p>
+                </div>
+                <span class="card-action" style="color: #666; cursor: default;">Próximamente</span>
+            </div>
+
+            <!-- Temática 3 -->
+            <div class="tematica-card">
+                <div>
+                    <h3>Cultura y Sabores</h3>
+                    <p>Tradiciones locales, artesanías regionales y la calidez característica de nuestra gente en cada comunidad.</p>
+                </div>
+                <span class="card-action" style="color: #666; cursor: default;">Próximamente</span>
+            </div>
+        </div>
+
+        <!-- Banner Gigante de Enlace Estratégico al Parque La Tunita -->
+        <div class="destacado-banner">
+            <div class="destacado-banner-text">
+                <h2>Parque Arqueológico La Tunita</h2>
+                <p>El portal exclusivo con toda la información sobre el arte rupestre de la Cultura Aguada, accesos, recomendaciones y circuitos guiados dentro del área protegida.</p>
+            </div>
+            <a href="https://tunita.com.ar" class="btn-destacado" target="_blank">Visitar Sitio Oficial</a>
+        </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <span>Municipalidad de Ancasti</span> &bull; Todos los derechos reservados
+    </footer>
+
+    <!-- Script del Carrusel -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 5000);
+    </script>
+
+</body>
+</html>
